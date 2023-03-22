@@ -1,6 +1,6 @@
 package com.example.kitsuapicleanarchitecture.di
 
-import com.example.kitsuapicleanarchitecture.data.remote.RetrofitClient
+import com.example.data.remote.RetrofitClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

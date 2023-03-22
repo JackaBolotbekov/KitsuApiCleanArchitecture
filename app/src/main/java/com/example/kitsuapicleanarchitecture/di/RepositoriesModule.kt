@@ -1,9 +1,9 @@
 package com.example.kitsuapicleanarchitecture.di
 
-import com.example.kitsuapicleanarchitecture.data.repositories.AnimeRepositoryImpl
-import com.example.kitsuapicleanarchitecture.data.repositories.MangaRepositoryImpl
-import com.example.kitsuapicleanarchitecture.domain.repositories.AnimeRepository
-import com.example.kitsuapicleanarchitecture.domain.repositories.MangaRepository
+import com.example.data.repositories.AnimeRepositoryImpl
+import com.example.data.repositories.MangaRepositoryImpl
+import com.example.domain.repositories.AnimeRepository
+import com.example.domain.repositories.MangaRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
