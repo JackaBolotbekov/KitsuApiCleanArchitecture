@@ -1,8 +1,6 @@
-package com.example.presentation.models.anime.main
+package com.example.presentation.models
 
-import com.example.domain.models.anime.main.DataItem
-import com.example.presentation.models.anime.AttributesUI
-import com.example.presentation.models.anime.toUI
+import com.example.domain.models.DataItem
 import com.google.gson.annotations.SerializedName
 
 data class DataItemUI(

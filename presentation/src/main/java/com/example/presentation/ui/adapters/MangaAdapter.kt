@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.domain.models.anime.main.DataItem
+import com.example.domain.models.DataItem
 import com.example.presentation.databinding.ItemAnimeBinding
 
 class MangaAdapter :
@@ -20,13 +20,6 @@ class MangaAdapter :
                 .load(item.attributes.posterImage.original)
                 .into(binding.ivImage)
             binding.tvName.text = item.attributes.titles.enJp
-        }
-
-        init {
-            itemView.setOnClickListener {
-                getItem(bindingAdapterPosition)?.apply {
-                }
-            }
         }
     }
 

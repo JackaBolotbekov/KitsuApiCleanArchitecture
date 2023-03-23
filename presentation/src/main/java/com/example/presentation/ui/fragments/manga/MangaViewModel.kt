@@ -1,23 +1,19 @@
 package com.example.presentation.ui.fragments.manga
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.example.domain.either.Either
-import com.example.domain.models.anime.main.DataItem
-import com.example.domain.usecase.FetchMangaUseCase
+import com.example.domain.models.DataItem
+import com.example.domain.usecases.FetchMangaUseCase
 import com.example.presentation.base.BaseViewModel
 import com.example.presentation.utils.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MangaViewModel @Inject constructor(
-    private val saveStateHandle: SavedStateHandle,
     private val fetchMangaUseCase: FetchMangaUseCase
 ) :
     BaseViewModel() {
@@ -26,17 +22,13 @@ class MangaViewModel @Inject constructor(
         MutableStateFlow<UIState<List<DataItem>>>(UIState.Loading())
     val countriesState = _countriesState.asStateFlow()
 
-    private val searchAnimeByFilter: StateFlow<String> = saveStateHandle.getStateFlow("text", "")
-
     init {
         fetchAnimeById()
     }
 
     private fun fetchAnimeById() {
         viewModelScope.launch {
-            searchAnimeByFilter.flatMapLatest { filter ->
-                fetchMangaUseCase()
-            }.collect { it ->
+            fetchMangaUseCase().collect { it ->
                 when (it) {
                     is Either.Left -> {
                         it.message?.let {

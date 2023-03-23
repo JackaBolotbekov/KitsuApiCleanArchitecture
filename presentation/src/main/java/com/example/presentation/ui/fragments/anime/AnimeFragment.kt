@@ -1,6 +1,5 @@
 package com.example.presentation.ui.fragments.anime
 
-import android.util.Log
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -13,6 +12,7 @@ import com.example.presentation.ui.adapters.AnimeAdapter
 import com.example.presentation.utils.UIState
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentAnimeBinding
+import com.example.presentation.extensions.showText
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -43,12 +43,13 @@ class AnimeFragment : BaseFragment<FragmentAnimeBinding, AnimeViewModel>(
                 viewModel.countriesState.collect{
                     when(it){
                         is UIState.Error -> {
-                            Log.e("tag", it.error)
+                            showText("error")
                         }
                         is UIState.Loading -> {
                             binding.progressBar.isVisible = true
                         }
                         is UIState.Success -> {
+                            showText("success")
                             binding.progressBar.isVisible = false
                             animeAdapter.submitList(it.data)
                         }

@@ -1,8 +1,6 @@
-package com.example.data.dtos.anime.main
+package com.example.data.remote.dtos
 
-import com.example.domain.models.anime.main.DataItem
-import com.example.data.dtos.anime.AttributesDto
-import com.example.data.dtos.anime.toDomain
+import com.example.domain.models.DataItem
 import com.google.gson.annotations.SerializedName
 
 data class DataItemDto(

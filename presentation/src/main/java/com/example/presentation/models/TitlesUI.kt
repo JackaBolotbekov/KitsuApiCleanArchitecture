@@ -1,6 +1,6 @@
-package com.example.presentation.models.anime
+package com.example.presentation.models
 
-import com.example.domain.models.anime.Titles
+import com.example.domain.models.Titles
 import com.google.gson.annotations.SerializedName
 
 data class TitlesUI(

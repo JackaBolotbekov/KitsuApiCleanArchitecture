@@ -1,6 +1,4 @@
-package com.example.domain.models.anime.main
-
-import com.example.domain.models.anime.Attributes
+package com.example.domain.models
 
 data class DataItem(
     val attributes: Attributes,

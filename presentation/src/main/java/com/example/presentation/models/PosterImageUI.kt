@@ -1,6 +1,6 @@
-package com.example.presentation.models.anime
+package com.example.presentation.models
 
-import com.example.domain.models.anime.PosterImage
+import com.example.domain.models.PosterImage
 import com.google.gson.annotations.SerializedName
 
 data class PosterImageUI(

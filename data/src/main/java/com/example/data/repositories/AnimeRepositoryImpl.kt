@@ -1,9 +1,9 @@
 package com.example.data.repositories
 
-import com.example.data.dtos.anime.main.toDomain
+import com.example.data.remote.dtos.toDomain
 import com.example.data.remote.apiservice.AnimeApiService
 import com.example.domain.either.Either
-import com.example.domain.models.anime.main.DataItem
+import com.example.domain.models.DataItem
 import com.example.domain.repositories.AnimeRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch

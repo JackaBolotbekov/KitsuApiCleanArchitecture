@@ -1,6 +1,6 @@
-package com.example.data.dtos.anime
+package com.example.data.remote.dtos
 
-import com.example.domain.models.anime.PosterImage
+import com.example.domain.models.PosterImage
 import com.google.gson.annotations.SerializedName
 
 data class PosterImageDto(
