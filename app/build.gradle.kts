@@ -56,15 +56,15 @@ dependencies {
         implementation(lifecycle)
     }
 
-        Dependencies.Activity.apply {
-            // Activity
-            implementation(activity)
-        }
+    Dependencies.Activity.apply {
+        // Activity
+        implementation(activity)
+    }
 
-        Dependencies.Fragment.apply {
-            // Fragment
-            implementation(fragment)
-        }
+    Dependencies.Fragment.apply {
+        // Fragment
+        implementation(fragment)
+    }
 
     Dependencies.Retrofit.apply {
         // Retrofit
