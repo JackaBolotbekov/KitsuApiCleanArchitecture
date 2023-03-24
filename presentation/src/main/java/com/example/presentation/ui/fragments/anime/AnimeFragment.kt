@@ -38,10 +38,10 @@ class AnimeFragment : BaseFragment<FragmentAnimeBinding, AnimeViewModel>(
     }
 
     private fun subscribeToAnime() {
-        viewLifecycleOwner.lifecycleScope.launch{
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
-                viewModel.countriesState.collect{
-                    when(it){
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.countriesState.collect {
+                    when (it) {
                         is UIState.Error -> {
                             showText("error")
                         }

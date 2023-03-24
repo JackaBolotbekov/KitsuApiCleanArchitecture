@@ -15,7 +15,7 @@ android {
         minSdk = Config.minSdk
         targetSdk = Config.compileAndTargetSdk
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = Config.testInstrumentationRunner
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -103,6 +103,11 @@ dependencies {
         // Glide
         implementation(glide)
         annotationProcessor(glideCompiler)
+    }
+
+    Dependencies.Paging3.apply {
+        // Paging 3
+        implementation(paging3)
     }
 
     // domain

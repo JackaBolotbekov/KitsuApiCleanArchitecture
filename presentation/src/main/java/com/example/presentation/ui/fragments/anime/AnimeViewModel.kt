@@ -15,8 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AnimeViewModel @Inject constructor(
     private val fetchAnimeUseCase: FetchAnimeUseCase
-) :
-    BaseViewModel() {
+) : BaseViewModel() {
 
     private val _countriesState =
         MutableStateFlow<UIState<List<DataItem>>>(UIState.Loading())

@@ -15,7 +15,7 @@ android {
         minSdk = Config.minSdk
         targetSdk = Config.compileAndTargetSdk
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = Config.testInstrumentationRunner
         consumerProguardFiles("consumer-rules.pro")
     }
 
