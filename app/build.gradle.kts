@@ -1,28 +1,22 @@
 plugins {
-    id("com.android.application")
-    kotlin("android")
-
-    // Kapt
-    kotlin("kapt")
-
-    // Hilt
-    id("com.google.dagger.hilt.android")
-
-    // SafeArgs
-    id("androidx.navigation.safeargs.kotlin")
-
+    Plugins.apply {
+        id(application)
+        kotlin(android)
+        kotlin(kapt)
+        id(hilt)
+    }
 }
 
 android {
-    namespace = "com.example.kitsuapicleanarchitecture"
-    compileSdk = 33
+    namespace = Config.applicationId
+    compileSdk = Config.compileAndTargetSdk
 
     defaultConfig {
-        applicationId = "com.example.kitsuapicleanarchitecture"
-        minSdk = 23
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = Config.applicationId
+        minSdk = Config.minSdk
+        targetSdk = Config.compileAndTargetSdk
+        versionCode = Config.versionCode
+        versionName = Config.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -30,7 +24,10 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles (getDefaultProguardFile("proguard-android-optimize.txt") , "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -38,7 +35,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = Config.jvmTarget
     }
 
     // ViewBinding
@@ -46,63 +43,75 @@ android {
 }
 
 dependencies {
+    Dependencies.UiComponents.apply {
+        // Core
+        implementation(core)
+        // AppCompat
+        implementation(appCompat)
+        // Material Design
+        implementation(material)
+        // UI Components
+        implementation(constraint)
+        implementation(legacy)
+        implementation(lifecycle)
+    }
 
-    // Core
-    implementation("androidx.core:core-ktx:1.9.0")
+        Dependencies.Activity.apply {
+            // Activity
+            implementation(activity)
+        }
 
-    // AppCompat
-    implementation("androidx.appcompat:appcompat:1.6.1")
+        Dependencies.Fragment.apply {
+            // Fragment
+            implementation(fragment)
+        }
 
-    // Material Design
-    implementation("com.google.android.material:material:1.8.0")
+    Dependencies.Retrofit.apply {
+        // Retrofit
+        implementation(retrofit)
+        implementation(gsonConvertor)
+    }
 
-    // UI Components
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+    Dependencies.OkHttpClient.apply {
+        // OkHttp Client
+        implementation(platform(bomHttp))
+        implementation(okHttp)
+        implementation(httpInterceptor)
+    }
 
-    // Activity
-    val activity_version = "1.6.1"
-    implementation("androidx.activity:activity-ktx:$activity_version")
+    Dependencies.Hilt.apply {
+        // Hilt
+        implementation(hilt)
+        kapt(hiltCompiler)
+    }
 
-    // Fragment
-    val fragment_version = "1.5.5"
-    implementation("androidx.fragment:fragment-ktx:$fragment_version")
+    Dependencies.Navigation.apply {
+        // Navigation
+        implementation(navigationFragment)
+        implementation(navigation)
+    }
 
-    // Retrofit
-    val retrofit_version = "2.9.0"
-    implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
-    implementation("com.squareup.retrofit2:converter-gson:$retrofit_version")
+    Dependencies.Lifecycles.apply {
+        // Lifecycles
+        implementation(lifecycles)
+        implementation(runtimeLifecycles)
+    }
 
-    // OkHttp Client
-    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
-    implementation("com.squareup.okhttp3:okhttp")
-    implementation("com.squareup.okhttp3:logging-interceptor")
+    Dependencies.ViewBinding.apply {
+        // ViewBindingPropertyDelegate
+        implementation(viewBinding)
+    }
 
-    //Hilt
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-compiler:2.44")
+    Dependencies.Glide.apply {
+        // Glide
+        implementation(glide)
+        annotationProcessor(glideCompiler)
+    }
 
-    // Navigation
-    val nav_version = "2.5.3"
-    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
-    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
-
-    // Lifecycles
-    val lifecycle_version = "2.5.1"
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
-
-    // ViewBindingPropertyDelegate
-    implementation("com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.6")
-
-    // Glide
-    implementation("com.github.bumptech.glide:glide:4.14.2")
-    annotationProcessor("com.github.bumptech.glide:compiler:4.14.2")
-
-    // Paging 3
-    val paging_version = "3.1.1"
-    implementation("androidx.paging:paging-runtime:$paging_version")
+    Dependencies.Paging3.apply {
+        // Paging 3
+        implementation(paging3)
+    }
 
     // data
     implementation(project(":data"))

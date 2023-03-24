@@ -1,21 +1,19 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-
-    // Kapt
-    kotlin("kapt")
-
-    // Hilt
-    id("com.google.dagger.hilt.android")
+    Plugins.apply {
+        id(androidLibrary)
+        kotlin(android)
+        kotlin(kapt)
+        id(hilt)
+    }
 }
 
 android {
     namespace = "com.example.data"
-    compileSdk = 33
+    compileSdk = Config.compileAndTargetSdk
 
     defaultConfig {
-        minSdk = 23
-        targetSdk = 33
+        minSdk = Config.minSdk
+        targetSdk = Config.compileAndTargetSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -35,32 +33,42 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = Config.jvmTarget
     }
 }
 
 dependencies {
+    Dependencies.UiComponents.apply {
+        // Core
+        implementation(core)
+        // AppCompat
+        implementation(appCompat)
+        // Material Design
+        implementation(material)
+        // UI Components
+        implementation(constraint)
+        implementation(legacy)
+        implementation(lifecycle)
+    }
 
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.8.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    Dependencies.Retrofit.apply {
+        // Retrofit
+        implementation(retrofit)
+        implementation(gsonConvertor)
+    }
 
-    // Retrofit
-    val retrofit_version = "2.9.0"
-    implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
-    implementation("com.squareup.retrofit2:converter-gson:$retrofit_version")
+    Dependencies.OkHttpClient.apply {
+        // OkHttp Client
+        implementation(platform(bomHttp))
+        implementation(okHttp)
+        implementation(httpInterceptor)
+    }
 
-    // OkHttp Client
-    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
-    implementation("com.squareup.okhttp3:okhttp")
-    implementation("com.squareup.okhttp3:logging-interceptor")
-
-    //Hilt
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-compiler:2.44")
+    Dependencies.Hilt.apply {
+        // Hilt
+        implementation(hilt)
+        kapt(hiltCompiler)
+    }
 
     // domain
     implementation(project(":domain"))

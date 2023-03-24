@@ -1,13 +1,14 @@
 plugins {
-    id("java-library")
-    id("org.jetbrains.kotlin.jvm")
+    Plugins.apply {
+        id(javaLibrary)
+        id(kotlinJvm)
+    }
 }
 
 dependencies {
-    // courutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-    // Hilt
-    implementation("javax.inject:javax.inject:1")
+    // coroutines
+    implementation(Dependencies.Coroutines.coroutines)
+    implementation(Dependencies.Inject.inject)
 }
 
 java {
